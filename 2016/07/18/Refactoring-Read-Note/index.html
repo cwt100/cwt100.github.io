@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Refactoring Read Note | cwt100&#39;s BLOG</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="TargetRefactoring book 閱讀筆記
+Action Items
+CH 1 Refactoring a First Example
+CH 6 Composing Methods
+CH 7 Moving Features Between Objects
+CH 10 Making Method Calls Simpler
+CH 11 Deal with Generalization">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Refactoring Read Note">
+<meta property="og:url" content="http://yoursite.com/2016/07/18/Refactoring-Read-Note/index.html">
+<meta property="og:site_name" content="cwt100's BLOG">
+<meta property="og:description" content="TargetRefactoring book 閱讀筆記
+Action Items
+CH 1 Refactoring a First Example
+CH 6 Composing Methods
+CH 7 Moving Features Between Objects
+CH 10 Making Method Calls Simpler
+CH 11 Deal with Generalization">
+<meta property="og:updated_time" content="2016-08-02T01:01:51.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Refactoring Read Note">
+<meta name="twitter:description" content="TargetRefactoring book 閱讀筆記
+Action Items
+CH 1 Refactoring a First Example
+CH 6 Composing Methods
+CH 7 Moving Features Between Objects
+CH 10 Making Method Calls Simpler
+CH 11 Deal with Generalization">
+  
+    <link rel="alternative" href="/atom.xml" title="cwt100&#39;s BLOG" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/head.jpg">
+  
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet" />
+  <script>
+      var yiliaConfig = {
+          fancybox: true,
+          animate: false,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            
+            <img src="/img/head.jpg" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+            
+        </a>
+
+        <hgroup>
+          <h1 class="header-author"><a href="/">Cherry Cheng</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">cwt100</p>
+        
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">archives</a></li>
+                        
+                            <li><a href="/about">About</a></li>
+                        
+                            <li><a href="/tags">Tags</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl mail" target="_blank" href="mailto:cwt0000d@gmail.com" title="mail">mail</a>
+                            
+                                <a class="fl github" target="_blank" href="https://github.com/cwt100" title="github">github</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/NET-Framework/" style="font-size: 10px;">.NET Framework</a> <a href="/tags/Activity/" style="font-size: 10px;">Activity</a> <a href="/tags/Android/" style="font-size: 10px;">Android</a> <a href="/tags/Android-6-0/" style="font-size: 10px;">Android 6.0</a> <a href="/tags/BLE/" style="font-size: 10px;">BLE</a> <a href="/tags/Bluetooth-LE/" style="font-size: 10px;">Bluetooth LE</a> <a href="/tags/CocoaPods/" style="font-size: 10px;">CocoaPods</a> <a href="/tags/Crashlytics/" style="font-size: 10px;">Crashlytics</a> <a href="/tags/EI-Capitan/" style="font-size: 10px;">EI Capitan</a> <a href="/tags/Eclipse/" style="font-size: 10px;">Eclipse</a> <a href="/tags/GitHub/" style="font-size: 10px;">GitHub</a> <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/Hexo/" style="font-size: 20px;">Hexo</a> <a href="/tags/MAC-OS-10-11/" style="font-size: 10px;">MAC OS 10.11</a> <a href="/tags/MacBook/" style="font-size: 10px;">MacBook</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/Nexus-7/" style="font-size: 10px;">Nexus 7 ||</a> <a href="/tags/Read-Note/" style="font-size: 10px;">Read Note</a> <a href="/tags/UITextView/" style="font-size: 10px;">UITextView</a> <a href="/tags/brew-update/" style="font-size: 10px;">brew update</a> <a href="/tags/c-sharp/" style="font-size: 10px;">c sharp</a> <a href="/tags/c/" style="font-size: 10px;">c#</a> <a href="/tags/certificate/" style="font-size: 10px;">certificate</a> <a href="/tags/eclipse/" style="font-size: 10px;">eclipse</a> <a href="/tags/homebrew/" style="font-size: 10px;">homebrew</a> <a href="/tags/iOS/" style="font-size: 10px;">iOS</a> <a href="/tags/jre/" style="font-size: 10px;">jre</a> <a href="/tags/objective-c/" style="font-size: 10px;">objective-c</a> <a href="/tags/storyboard/" style="font-size: 10px;">storyboard</a> <a href="/tags/visual-studio-2008/" style="font-size: 10px;">visual studio 2008</a> <a href="/tags/visual-studio-2010/" style="font-size: 10px;">visual studio 2010</a>
+                    </div>
+                </section>
+                
+                
+                
+
+                
+                
+                <section class="switch-part switch-part3">
+                
+                    <div id="js-aboutme">一腳踏進了&quot;program&quot;的不歸路, 並且樂在其中。</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Cherry Cheng</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img src="/img/head.jpg" class="js-avatar" style="width: 100%; height: 100%; opacity: 1;">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Cherry Cheng</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">cwt100</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">archives</a></li>
+                
+                    <li><a href="/about">About</a></li>
+                
+                    <li><a href="/tags">Tags</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="mail" target="_blank" href="mailto:cwt0000d@gmail.com" title="mail">mail</a>
+                    
+                        <a class="github" target="_blank" href="https://github.com/cwt100" title="github">github</a>
+                    
+                </div>
+            </nav>
+        </header>                
+    </div>
+</nav>
+      <div class="body-wrap"><article id="post-Refactoring-Read-Note" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/07/18/Refactoring-Read-Note/" class="article-date">
+      <time datetime="2016-07-18T11:22:05.000Z" itemprop="datePublished">2016-07-18</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Refactoring Read Note
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/Refactoring/">Refactoring</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Read-Note/">Read Note</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><p><strong>Refactoring</strong> book 閱讀筆記</p>
+<h2 id="Action-Items"><a href="#Action-Items" class="headerlink" title="Action Items"></a>Action Items</h2><ul>
+<li>CH 1 Refactoring a First Example</li>
+<li>CH 6 Composing Methods</li>
+<li>CH 7 Moving Features Between Objects</li>
+<li>CH 10 Making Method Calls Simpler</li>
+<li>CH 11 Deal with Generalization</li>
+</ul>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><a id="more"></a>
+<h3 id="CH-1-Refactoring-a-First-Example"><a href="#CH-1-Refactoring-a-First-Example" class="headerlink" title="CH 1 Refactoring a First Example"></a>CH 1 Refactoring a First Example</h3><h4 id="1-3-分解並重組Statement"><a href="#1-3-分解並重組Statement" class="headerlink" title="1.3 分解並重組Statement()"></a>1.3 分解並重組Statement()</h4><ul>
+<li>函式應該放在它所使用的資料的所屬 object 內。</li>
+</ul>
+<h3 id="CH-6-Composing-Methods"><a href="#CH-6-Composing-Methods" class="headerlink" title="CH 6 Composing Methods"></a>CH 6 Composing Methods</h3><h4 id="6-6-Split-Temporary-Variable"><a href="#6-6-Split-Temporary-Variable" class="headerlink" title="6.6 Split Temporary Variable"></a>6.6 Split Temporary Variable</h4><blockquote>
+<p>如果暫時變數承擔多個責任，它就應該被替換為多個暫時變數，<br>每個變數只承擔一個責任。</p>
+</blockquote>
+<h3 id="CH-7-Moving-Features-Between-Objects"><a href="#CH-7-Moving-Features-Between-Objects" class="headerlink" title="CH 7 Moving Features Between Objects"></a>CH 7 Moving Features Between Objects</h3><h4 id="7-1-Move-Method"><a href="#7-1-Move-Method" class="headerlink" title="7.1 Move Method"></a>7.1 Move Method</h4><blockquote>
+<p>如果一個 class 與另一個 class 有太多合作而形成高度耦合(highly coupled)，<br>我就會搬移函式。</p>
+<h5 id="Mechanics"><a href="#Mechanics" class="headerlink" title="Mechanics"></a>Mechanics</h5><p>檢查source class 的 subclass 和 superclass，看看是否有該函式的其他宣告。</p>
+<ul>
+<li>如果出現其他宣告，你或許無法進行搬移，除非 target class 也同樣表現出多形性(polymorphism)。<br>決定「刪除 source method 」或將它當作一個 delegating method 保留下來。</li>
+<li>如果你經常要在 source object 中引用 target method，那麼將 source method 作為 delegating method 保留下來會比較簡單。</li>
+</ul>
+</blockquote>
+<h3 id="CH-10-Making-Method-Calls-Simpler"><a href="#CH-10-Making-Method-Calls-Simpler" class="headerlink" title="CH 10 Making Method Calls Simpler"></a>CH 10 Making Method Calls Simpler</h3><h4 id="10-4-Separate-Query-from-Modifier"><a href="#10-4-Separate-Query-from-Modifier" class="headerlink" title="10.4 Separate Query from Modifier"></a>10.4 Separate Query from Modifier</h4><blockquote>
+<p>某個函式既傳回物件狀態值，又修改物件狀態。<br>建立兩個不同的函式，負責查詢、修改。</p>
+</blockquote>
+<h3 id="CH-11-Deal-with-Generalization"><a href="#CH-11-Deal-with-Generalization" class="headerlink" title="CH 11 Deal with Generalization"></a>CH 11 Deal with Generalization</h3><h4 id="11-10-Form-Template-Method"><a href="#11-10-Form-Template-Method" class="headerlink" title="11.10 Form Template Method"></a>11.10 Form Template Method</h4><blockquote>
+<p>你有一些 subclass，其中相應的某些函數以相同順序執行類似的措施，<br>但各措施實際上有所不同。</p>
+<ol>
+<li>將各個措施分別放進獨立的函式中，並保持它們都有相同的署名式(signature)。</li>
+<li>將原函式上移至 superclass。</li>
+</ol>
+</blockquote>
+<h2 id="尚未完成…"><a href="#尚未完成…" class="headerlink" title="尚未完成…"></a>尚未完成…</h2>
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2016/07/18/Refactoring-Read-Note/">Refactoring Read Note</a></p>
+        <p><span>文章作者:</span><a href="/" title="访问 Cherry Cheng 的个人博客">Cherry Cheng</a></p>
+        <p><span>发布时间:</span>2016年07月18日 - 19时22分</p>
+        <p><span>最后更新:</span>2016年08月02日 - 09时01分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2016/07/18/Refactoring-Read-Note/" title="Refactoring Read Note">http://yoursite.com/2016/07/18/Refactoring-Read-Note/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2016/07/18/Refactoring-Read-Note/　　作者: Cherry Cheng" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script src="/js/clipboard.min.js"></script>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+    <a href="/2016/07/19/Android-UI-Test-Screenshot/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          Android UI Test Screenshot
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/07/14/iOS9-Http-Setup/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">iOS9 Http Setup</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Target"><span class="toc-number">1.</span> <span class="toc-text">Target</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Action-Items"><span class="toc-number">2.</span> <span class="toc-text">Action Items</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick-Start"><span class="toc-number">3.</span> <span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#CH-1-Refactoring-a-First-Example"><span class="toc-number">3.1.</span> <span class="toc-text">CH 1 Refactoring a First Example</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-分解並重組Statement"><span class="toc-number">3.1.1.</span> <span class="toc-text">1.3 分解並重組Statement()</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CH-6-Composing-Methods"><span class="toc-number">3.2.</span> <span class="toc-text">CH 6 Composing Methods</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#6-6-Split-Temporary-Variable"><span class="toc-number">3.2.1.</span> <span class="toc-text">6.6 Split Temporary Variable</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CH-7-Moving-Features-Between-Objects"><span class="toc-number">3.3.</span> <span class="toc-text">CH 7 Moving Features Between Objects</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#7-1-Move-Method"><span class="toc-number">3.3.1.</span> <span class="toc-text">7.1 Move Method</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Mechanics"><span class="toc-number">3.3.1.1.</span> <span class="toc-text">Mechanics</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CH-10-Making-Method-Calls-Simpler"><span class="toc-number">3.4.</span> <span class="toc-text">CH 10 Making Method Calls Simpler</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#10-4-Separate-Query-from-Modifier"><span class="toc-number">3.4.1.</span> <span class="toc-text">10.4 Separate Query from Modifier</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CH-11-Deal-with-Generalization"><span class="toc-number">3.5.</span> <span class="toc-text">CH 11 Deal with Generalization</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#11-10-Form-Template-Method"><span class="toc-number">3.5.1.</span> <span class="toc-text">11.10 Form Template Method</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#尚未完成…"><span class="toc-number">4.</span> <span class="toc-text">尚未完成…</span></a></li></ol>
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
+
+
+
+
+
+<div class="bdsharebuttonbox">
+	<a href="#" class="fx fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="fx fa-weixin bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+	<a href="#" class="fx fa-qq bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+	<a href="#" class="fx fa-facebook-official bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+	<a href="#" class="fx fa-twitter bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+	<a href="#" class="fx fa-linkedin bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+	<a href="#" class="fx fa-files-o bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+</div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+
+    
+        <section id="comments">
+  <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'cwt100'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2016/07/19/Android-UI-Test-Screenshot/" title="上一篇: Android UI Test Screenshot">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a href="/2016/07/14/iOS9-Http-Setup/" title="下一篇: iOS9 Http Setup">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/08/04/Java-Eclipse-No-projects-found-to-import/">Java Eclipse - No projects found to import</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/27/Android-get-version-name/">Android get version name</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/19/Android-UI-Test-Screenshot/">Android UI Test Screenshot</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/18/Refactoring-Read-Note/">Refactoring Read Note</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/14/iOS9-Http-Setup/">iOS9 Http Setup</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/14/Hexo-Markdown-Hot-key/">Hexo + Markdown Hot key</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/11/iPhone-developer-Certificate-過期/">iPhone developer Certificate 過期</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/05/C-Debug-message-output/">C# Debug message output</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/29/iOS-Storyboard-Exit/">iOS Storyboard-Exit</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/21/iOS-CocoaPods-Third-party-library-manager/">iOS CocoaPods Third-party library manager</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/20/eclipse-JRE-System-library-Unbound/">eclipse JRE System library Unbound</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/18/iOS-發佈版本給使用者測試-Crashlytics/">iOS 發佈版本給使用者測試-Crashlytics</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/12/MacBook-access-port/">MacBook access port</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/11/iOS-UITextView-dismiss-keyboard/">iOS UITextView dismiss keyboard</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/11/Hexo-Push-to-Github/">Hexo Push to Github</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/08/Android-6-0-Bluetooth-LE-can-t-scan/">Android 6.0 Bluetooth LE can't scan</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/06/Android-getActionBar-return-null/">Android getActionBar() return null</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/01/brew-update-in-MAC-EI-Capitan-Issue/">brew update in MAC EI Capitan Issue</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/30/visual-studio-can-t-open-c-project-NET-Framework-target-version/">visual studio can't open c# project</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/28/hello-world/">Hello World</a></li></ul>
+    <script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#toc, .switch-btn, .switch-area").toggle();
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+                $(".switch-btn, .switch-area").fadeToggle(300);
+            }
+        })
+    </script>
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2016 Cherry Cheng
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/luuman/hexo-theme-spfk" target="_blank">spfk</a> by luuman
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >本站來訪數: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本頁閱讀量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+    <script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 24;
+            var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+  </div>
+</body>
+</html>

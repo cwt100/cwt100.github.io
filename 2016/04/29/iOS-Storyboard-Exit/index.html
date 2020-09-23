@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>iOS Storyboard-Exit | cwt100&#39;s BLOG</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Target本篇主要是說明 storyboard 中 UIViewController
+A -&amp;gt; B -&amp;gt; C如何透過 Exit 來達到以下的目的C -&amp;gt; A">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS Storyboard-Exit">
+<meta property="og:url" content="http://yoursite.com/2016/04/29/iOS-Storyboard-Exit/index.html">
+<meta property="og:site_name" content="cwt100's BLOG">
+<meta property="og:description" content="Target本篇主要是說明 storyboard 中 UIViewController
+A -&amp;gt; B -&amp;gt; C如何透過 Exit 來達到以下的目的C -&amp;gt; A">
+<meta property="og:updated_time" content="2016-04-29T08:20:44.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS Storyboard-Exit">
+<meta name="twitter:description" content="Target本篇主要是說明 storyboard 中 UIViewController
+A -&amp;gt; B -&amp;gt; C如何透過 Exit 來達到以下的目的C -&amp;gt; A">
+  
+    <link rel="alternative" href="/atom.xml" title="cwt100&#39;s BLOG" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/head.jpg">
+  
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet" />
+  <script>
+      var yiliaConfig = {
+          fancybox: true,
+          animate: false,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            
+            <img src="/img/head.jpg" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+            
+        </a>
+
+        <hgroup>
+          <h1 class="header-author"><a href="/">Cherry Cheng</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">cwt100</p>
+        
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">archives</a></li>
+                        
+                            <li><a href="/about">About</a></li>
+                        
+                            <li><a href="/tags">Tags</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl mail" target="_blank" href="mailto:cwt0000d@gmail.com" title="mail">mail</a>
+                            
+                                <a class="fl github" target="_blank" href="https://github.com/cwt100" title="github">github</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/NET-Framework/" style="font-size: 10px;">.NET Framework</a> <a href="/tags/Activity/" style="font-size: 10px;">Activity</a> <a href="/tags/Android/" style="font-size: 10px;">Android</a> <a href="/tags/Android-6-0/" style="font-size: 10px;">Android 6.0</a> <a href="/tags/BLE/" style="font-size: 10px;">BLE</a> <a href="/tags/Bluetooth-LE/" style="font-size: 10px;">Bluetooth LE</a> <a href="/tags/CocoaPods/" style="font-size: 10px;">CocoaPods</a> <a href="/tags/Crashlytics/" style="font-size: 10px;">Crashlytics</a> <a href="/tags/EI-Capitan/" style="font-size: 10px;">EI Capitan</a> <a href="/tags/Eclipse/" style="font-size: 10px;">Eclipse</a> <a href="/tags/GitHub/" style="font-size: 10px;">GitHub</a> <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/Hexo/" style="font-size: 20px;">Hexo</a> <a href="/tags/MAC-OS-10-11/" style="font-size: 10px;">MAC OS 10.11</a> <a href="/tags/MacBook/" style="font-size: 10px;">MacBook</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/Nexus-7/" style="font-size: 10px;">Nexus 7 ||</a> <a href="/tags/Read-Note/" style="font-size: 20px;">Read Note</a> <a href="/tags/UITextView/" style="font-size: 10px;">UITextView</a> <a href="/tags/Ubuntu/" style="font-size: 15px;">Ubuntu</a> <a href="/tags/XCode8/" style="font-size: 10px;">XCode8</a> <a href="/tags/brew-update/" style="font-size: 10px;">brew update</a> <a href="/tags/c-sharp/" style="font-size: 10px;">c sharp</a> <a href="/tags/c/" style="font-size: 10px;">c#</a> <a href="/tags/certificate/" style="font-size: 10px;">certificate</a> <a href="/tags/eclipse/" style="font-size: 10px;">eclipse</a> <a href="/tags/homebrew/" style="font-size: 10px;">homebrew</a> <a href="/tags/iOS/" style="font-size: 10px;">iOS</a> <a href="/tags/jre/" style="font-size: 10px;">jre</a> <a href="/tags/objective-c/" style="font-size: 10px;">objective-c</a> <a href="/tags/storyboard/" style="font-size: 10px;">storyboard</a> <a href="/tags/visual-studio-2008/" style="font-size: 10px;">visual studio 2008</a> <a href="/tags/visual-studio-2010/" style="font-size: 10px;">visual studio 2010</a>
+                    </div>
+                </section>
+                
+                
+                
+
+                
+                
+                <section class="switch-part switch-part3">
+                
+                    <div id="js-aboutme">一腳踏進了&quot;program&quot;的不歸路, 並且樂在其中。</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Cherry Cheng</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img src="/img/head.jpg" class="js-avatar" style="width: 100%; height: 100%; opacity: 1;">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Cherry Cheng</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">cwt100</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">archives</a></li>
+                
+                    <li><a href="/about">About</a></li>
+                
+                    <li><a href="/tags">Tags</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="mail" target="_blank" href="mailto:cwt0000d@gmail.com" title="mail">mail</a>
+                    
+                        <a class="github" target="_blank" href="https://github.com/cwt100" title="github">github</a>
+                    
+                </div>
+            </nav>
+        </header>                
+    </div>
+</nav>
+      <div class="body-wrap"><article id="post-iOS-Storyboard-Exit" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/04/29/iOS-Storyboard-Exit/" class="article-date">
+      <time datetime="2016-04-29T08:20:44.000Z" itemprop="datePublished">2016-04-29</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      iOS Storyboard-Exit
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/iOS/">iOS</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/storyboard/">storyboard</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><p>本篇主要是說明 storyboard 中 UIViewController</p>
+<font color="red">A -&gt; B -&gt; C</font><br>如何透過 Exit 來達到以下的目的<br><font color="red">C -&gt; A</font>
+
+<a id="more"></a>
+<h2 id="Action-Items"><a href="#Action-Items" class="headerlink" title="Action Items"></a>Action Items</h2><ol>
+<li>Add unwind IBAction - (A ViewController)</li>
+<li>Exit action - (C ViewController)</li>
+</ol>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Add-unwind-IBAction"><a href="#Add-unwind-IBAction" class="headerlink" title="Add unwind IBAction"></a>Add unwind IBAction</h3><p>在A ViewController 中，加入以下 function</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- (IBAction)unwindSegueToAViewController:(UIStoryboardSegue *)segue &#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>To</strong> 後面的名稱為此 ViewController 的名稱，<br>這樣透過 action 看到此方法時，就可以明確地知道，<br>要回到哪個 ViewController。</p>
+<h3 id="Exit-action"><a href="#Exit-action" class="headerlink" title="Exit action"></a>Exit action</h3><ol>
+<li>開啟 storyboard</li>
+<li>在 A ViewController 上面，使用右鍵點擊 Exit，可以看到剛剛加的 IBAction</li>
+<li>將 step 2 中的 IBAction 與 C ViewController 中，要觸發此返回的 button 連結</li>
+</ol>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a href="http://blog.csdn.net/kid_devil/article/details/23218195" target="_blank" rel="external">http://blog.csdn.net/kid_devil/article/details/23218195</a></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2016/04/29/iOS-Storyboard-Exit/">iOS Storyboard-Exit</a></p>
+        <p><span>文章作者:</span><a href="/" title="访问 Cherry Cheng 的个人博客">Cherry Cheng</a></p>
+        <p><span>发布时间:</span>2016年04月29日 - 16时20分</p>
+        <p><span>最后更新:</span>2016年04月29日 - 16时20分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2016/04/29/iOS-Storyboard-Exit/" title="iOS Storyboard-Exit">http://yoursite.com/2016/04/29/iOS-Storyboard-Exit/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2016/04/29/iOS-Storyboard-Exit/　　作者: Cherry Cheng" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script src="/js/clipboard.min.js"></script>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+    <a href="/2016/05/05/C-Debug-message-output/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          C# Debug message output
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/04/21/iOS-CocoaPods-Third-party-library-manager/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">iOS CocoaPods Third-party library manager</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Target"><span class="toc-number">1.</span> <span class="toc-text">Target</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Action-Items"><span class="toc-number">2.</span> <span class="toc-text">Action Items</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick-Start"><span class="toc-number">3.</span> <span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Add-unwind-IBAction"><span class="toc-number">3.1.</span> <span class="toc-text">Add unwind IBAction</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Exit-action"><span class="toc-number">3.2.</span> <span class="toc-text">Exit action</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">4.</span> <span class="toc-text">Reference</span></a></li></ol>
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
+
+
+
+
+
+<div class="bdsharebuttonbox">
+	<a href="#" class="fx fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="fx fa-weixin bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+	<a href="#" class="fx fa-qq bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+	<a href="#" class="fx fa-facebook-official bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+	<a href="#" class="fx fa-twitter bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+	<a href="#" class="fx fa-linkedin bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+	<a href="#" class="fx fa-files-o bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+</div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+
+    
+        <section id="comments">
+  <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'cwt100'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2016/05/05/C-Debug-message-output/" title="上一篇: C# Debug message output">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a href="/2016/04/21/iOS-CocoaPods-Third-party-library-manager/" title="下一篇: iOS CocoaPods Third-party library manager">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/02/10/Xcode-thin-and-recover-disk-space/">Xcode thin and recover disk space</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/11/16/iOS-APP-iCON-edit/">iOS APP iCON edit</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/04/ios-10-XCode8-Signing/">ios 10 & XCode8 Signing</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/08/S-H-E-is-The-One/">S.H.E is The One</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/10/Ubuntu-run-java-jar/">Ubuntu run java jar</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/10/VmWare-Ubuntu-Error-proxy-authentication-required/">VmWare-Ubuntu-Error  proxy authentication required</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/09/Refactoring-Read-Note-2/">Refactoring Read Note (2)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/09/Refactoring-Read-Note-3/">Refactoring Read Note (3)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/04/Java-Eclipse-No-projects-found-to-import/">Java Eclipse - No projects found to import</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/27/Android-get-version-name/">Android get version name</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/19/Android-UI-Test-Screenshot/">Android UI Test Screenshot</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/18/Refactoring-Read-Note-1/">Refactoring Read Note (1)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/14/iOS9-Http-Setup/">iOS9 Http Setup</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/14/Hexo-Markdown-Hot-key/">Hexo + Markdown Hot key</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/11/iPhone-developer-Certificate-過期/">iPhone developer Certificate 過期</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/05/C-Debug-message-output/">C# Debug message output</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/29/iOS-Storyboard-Exit/">iOS Storyboard-Exit</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/21/iOS-CocoaPods-Third-party-library-manager/">iOS CocoaPods Third-party library manager</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/20/eclipse-JRE-System-library-Unbound/">eclipse JRE System library Unbound</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/18/iOS-發佈版本給使用者測試-Crashlytics/">iOS 發佈版本給使用者測試-Crashlytics</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/12/MacBook-access-port/">MacBook access port</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/11/iOS-UITextView-dismiss-keyboard/">iOS UITextView dismiss keyboard</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/11/Hexo-Push-to-Github/">Hexo Push to Github</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/08/Android-6-0-Bluetooth-LE-can-t-scan/">Android 6.0 Bluetooth LE can't scan</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/06/Android-getActionBar-return-null/">Android getActionBar() return null</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/01/brew-update-in-MAC-EI-Capitan-Issue/">brew update in MAC EI Capitan Issue</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/30/visual-studio-can-t-open-c-project-NET-Framework-target-version/">visual studio can't open c# project</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/28/hello-world/">Hello World</a></li></ul>
+    <script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#toc, .switch-btn, .switch-area").toggle();
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+                $(".switch-btn, .switch-area").fadeToggle(300);
+            }
+        })
+    </script>
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2017 Cherry Cheng
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/luuman/hexo-theme-spfk" target="_blank">spfk</a> by luuman
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >本站來訪數: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本頁閱讀量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+    <script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 24;
+            var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+  </div>
+</body>
+</html>
